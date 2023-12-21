@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < countLines; i++) {
       for (let j = 0; j < countColumns; j++) {
         context.strokeRect(j * cellSize, i * cellSize, cellSize, cellSize);
-        context.font = '40px Arial';
+        context.font = '60px Arial';
         context.textAlign = 'center';
         context.textBaseline = 'middle';
 
@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
         else{
           context.strokeStyle = "blue"
         }
+
         context.lineWidth = 5;
         context.beginPath();
         context.moveTo((a % countColumns + 0.5) * cellSize, (Math.floor(a / countColumns) + 0.5) * cellSize);
@@ -102,8 +103,9 @@ document.addEventListener("DOMContentLoaded", function () {
         context.stroke();
 
         setTimeout(function() {
+          
           context.clearRect(0, 0, canvas.width, canvas.height);
-          context.font = "40px Arial";
+          context.font = "60px Arial";
           context.fillText("Игрок " + currentPlayer + " победил!", cellSize + cellSize / 2, cellSize + cellSize / 2);
         }, 2000);
 
@@ -126,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isBoardFull == true) {
       gameActive = false;
       context.clearRect(0, 0, canvas.width, canvas.height);
-      context.font = "40px Arial";
+      context.font = "60px Arial";
       context.strokeStyle = "green";
       context.fillText("Ничья!", cellSize + cellSize / 2, cellSize + cellSize / 2);
       setTimeout(function() {
