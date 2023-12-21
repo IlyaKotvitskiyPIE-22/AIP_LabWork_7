@@ -42,9 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
           context.fillStyle = 'red'; // Цвет для крестиков (X)
         } else if (board[i][j] === 'O') {
           context.fillStyle = 'blue'; // Цвет для ноликов (O)
-        } else {
-          context.fillStyle = 'black'; // Цвет для пустых клеток
-        }
+        } 
 
         context.fillText(board[i][j], j * cellSize + cellSize / 2, i * cellSize + cellSize / 2);
       }
@@ -85,36 +83,35 @@ document.addEventListener("DOMContentLoaded", function () {
       const valA = board[Math.floor(a / countColumns)][a % countColumns];
       const valB = board[Math.floor(b / countColumns)][b % countColumns];
       const valC = board[Math.floor(c / countColumns)][c % countColumns];
-
-      if (valA !== '' && valA && valA === valB && valA === valC) {
+  
+      if (valA !== '' && valA === valB && valA === valC) {
         gameActive = false;
-
-        if(currentPlayer == "X"){
-          context.strokeStyle = "red";
+  
+        if (currentPlayer === 'X') {
+          context.strokeStyle = 'red';
+        } else {
+          context.strokeStyle = 'blue';
         }
-        else{
-          context.strokeStyle = "blue"
-        }
-
+  
         context.lineWidth = 5;
         context.beginPath();
         context.moveTo((a % countColumns + 0.5) * cellSize, (Math.floor(a / countColumns) + 0.5) * cellSize);
         context.lineTo((c % countColumns + 0.5) * cellSize, (Math.floor(c / countColumns) + 0.5) * cellSize);
         context.stroke();
-
-        setTimeout(function() {
-          
+  
+        setTimeout(function () {
           context.clearRect(0, 0, canvas.width, canvas.height);
-          context.font = "60px Arial";
-          context.fillText("Игрок " + currentPlayer + " победил!", cellSize + cellSize / 2, cellSize + cellSize / 2);
+          context.font = '60px Arial';
+          context.fillText('Игрок ' + valA + ' победил!', cellSize + cellSize / 2, cellSize + cellSize / 2);
         }, 2000);
-
-        setTimeout(function() {
-          location.reload(); // Перезагрузка страницы после 3 секунд
+  
+        setTimeout(function () {
+          location.reload();
         }, 3000);
       }
     }
   }
+  
 
   function checkDraw() {
     isBoardFull = true;
@@ -129,11 +126,10 @@ document.addEventListener("DOMContentLoaded", function () {
       gameActive = false;
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.font = "60px Arial";
-      context.strokeStyle = "green";
       context.fillText("Ничья!", cellSize + cellSize / 2, cellSize + cellSize / 2);
       setTimeout(function() {
         location.reload(); // Перезагрузка страницы после 3 секунд
-      }, 3000);
+      }, 2000);
     }
   }
 
@@ -154,7 +150,8 @@ document.addEventListener("DOMContentLoaded", function () {
       checkDraw();
       if (currentPlayer == "X") {
         currentPlayer = "O";
-      } else {
+      } 
+      else {
         currentPlayer = "X";
       }
     }
