@@ -27,6 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentPlayer = 'X';
   let gameActive = true;
 
+  canvas.addEventListener('mousemove', handleHover);
+  canvas.addEventListener('mouseout', handleMouseOut);
+
+
   function drawBoard() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -40,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Определение цвета для символов в зависимости от текущего игрока
         if (board[i][j] === 'X') {
           context.fillStyle = 'red'; // Цвет для крестиков (X)
-        } else if (board[i][j] === 'O') {
+        } 
+        else {
           context.fillStyle = 'blue'; // Цвет для ноликов (O)
         } 
 
@@ -68,14 +73,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  canvas.addEventListener('mousemove', handleHover);
-
   function handleMouseOut() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     drawBoard();
   }
-
-  canvas.addEventListener('mouseout', handleMouseOut);
 
   function checkWinCombo(winCombo) {
     for (let combo of winCombo) {
@@ -89,7 +90,8 @@ document.addEventListener("DOMContentLoaded", function () {
   
         if (currentPlayer === 'X') {
           context.strokeStyle = 'red';
-        } else {
+        } 
+        else {
           context.strokeStyle = 'blue';
         }
   
